@@ -30,11 +30,11 @@ class VotersImport implements ToModel, WithUpserts, WithHeadingRow, WithBatchIns
 
         return new Voter([
             'name'                => $name,
-            'branch'              => trim($row['branch'] ?? $row['branch_name'] ?? $row['branchname'] ?? ''),
+            'branch'              => trim($row['source_file'] ?? $row['branch'] ?? $row['branch_name'] ?? $row['branchname'] ?? ''),
             'phone'               => $phone ?: null,
-            'registration_number' => trim($row['registration_number'] ?? $row['registration'] ?? $row['reg_no'] ?? '') ?: null,
-            'serial_number'       => trim($row['serial_number'] ?? $row['serial'] ?? $row['sr_no'] ?? '') ?: null,
-            'electoral_number'    => trim($row['electoral_number'] ?? $row['electoral'] ?? $row['electoralnumber'] ?? $row['electoral_no'] ?? '') ?: null,
+            'registration_number' => trim($row['reg_no'] ?? $row['registration_number'] ?? $row['registration'] ?? '') ?: null,
+            'serial_number'       => trim($row['sr_no'] ?? $row['serial_number'] ?? $row['serial'] ?? '') ?: null,
+            'electoral_number'    => trim($row['final_roll_no'] ?? $row['electoral_number'] ?? $row['electoral'] ?? $row['electoralnumber'] ?? $row['electoral_no'] ?? '') ?: null,
             'degree'              => trim($row['degree'] ?? $row['qualification'] ?? '') ?: null,
             'address'             => trim($row['address'] ?? $row['area'] ?? '') ?: null,
         ]);
