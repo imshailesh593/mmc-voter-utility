@@ -49,7 +49,7 @@ class BranchList extends Component
     public function openVenueEdit(string $branch): void
     {
         $this->editingVenueBranch = $branch;
-        $this->editingVenueValue = BranchVenue::where('branch', $branch)->value('venue') ?? '';
+        $this->editingVenueValue = BranchVenue::whereRaw('LOWER(TRIM(branch)) = ?', [strtolower(trim($branch))])->value('venue') ?? '';
     }
 
     public function cancelVenueEdit(): void
@@ -107,7 +107,7 @@ class BranchList extends Component
 
         $branches = $query->orderBy('branch')->get();
         $grandTotal = Voter::count();
-        $venues = BranchVenue::pluck('venue', 'branch')->toArray();
+        $venues = BranchVenue::allKeyed();
 
         return view('livewire.admin.branch-list', compact('branches', 'grandTotal', 'venues'));
     }
