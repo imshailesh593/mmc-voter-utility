@@ -1,14 +1,6 @@
 <div>
     <form wire:submit="search" class="search-form">
         <div class="form-group">
-            <label class="form-label" for="phone-input">Mobile Number</label>
-            <input id="phone-input" type="tel" wire:model="phone" class="form-input"
-                placeholder="Enter mobile number..." inputmode="numeric" autocomplete="off">
-        </div>
-
-        <div class="divider-or">OR</div>
-
-        <div class="form-group">
             <label class="form-label" for="name-input">Full Name</label>
             <input id="name-input" type="text" wire:model="name" class="form-input"
                 placeholder="Enter voter name..." autocomplete="off">
