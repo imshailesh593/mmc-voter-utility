@@ -4,50 +4,37 @@
 
 @section('extra-styles')
 <style>
-/* ── No page scroll — everything lives in 100vh ──────────────────────── */
-html, body { height: 100%; overflow: hidden; }
-.page-wrap  { height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+/* ── Page layout ─────────────────────────────────────────────────────── */
+html, body { height: 100%; }
+.page-wrap  { min-height: 100vh; display: flex; flex-direction: column; }
 .site-footer { display: none; }
 
-/* ── Portal wrapper fills all remaining space ────────────────────────── */
+/* ── Portal wrapper ──────────────────────────────────────────────────── */
 .portal-wrap {
     flex: 1;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
     background: #f1f5f9;
 }
 
-/* ── Hero: 55 % of viewport, image shown in full (no crop) ──────────── */
+/* ── Hero: full image, no fixed height ───────────────────────────────── */
 .hero-img-wrap {
-    flex-shrink: 0;
-    height: 55vh;
     background: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
     border-bottom: 2px solid #fecaca;
 }
 .hero-img-wrap img {
-    height: 100%;
     width: 100%;
-    object-fit: contain;   /* shows full image — no cropping ever */
-    object-position: center;
+    height: auto;
     display: block;
 }
 
-/* ── Search area: 45 % of viewport, scrolls internally on results ────── */
+/* ── Search area ─────────────────────────────────────────────────────── */
 .search-outer {
-    flex: 1;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding: 0.85rem 1rem;
+    padding: 1.25rem 1rem 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.75rem;
-    -webkit-overflow-scrolling: touch;
 }
 
 /* ── Compact search card ─────────────────────────────────────────────── */
