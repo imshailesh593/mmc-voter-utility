@@ -22,10 +22,10 @@
 .slip-p-body { padding: 0.9rem 1.1rem; display: flex; gap: 0.9rem; align-items: center; }
 .slip-p-num {
     background: var(--red-600); color: var(--white);
-    font-size: 1.9rem; font-weight: 900;
-    width: 54px; height: 54px; border-radius: 7px;
+    font-weight: 900;
+    min-width: 54px; height: 54px; padding: 0 6px; border-radius: 7px;
     display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
+    flex-shrink: 0; white-space: nowrap;
 }
 .slip-p-info { flex: 1; }
 .slip-p-srlabel { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-400); }
@@ -104,7 +104,7 @@
                         @if($voter->electoral_number)
                         @php
                             $elen = strlen($voter->electoral_number);
-                            $efont = $elen <= 3 ? '1.9rem' : ($elen <= 5 ? '1.35rem' : ($elen <= 7 ? '1rem' : '0.75rem'));
+                            $efont = $elen <= 2 ? '1.9rem' : ($elen <= 3 ? '1.6rem' : ($elen <= 4 ? '1.25rem' : ($elen <= 5 ? '1rem' : ($elen <= 7 ? '0.8rem' : '0.65rem'))));
                         @endphp
                         <div style="display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0">
                             <div style="font-size:0.55rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-400)">Electoral No.</div>
