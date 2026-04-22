@@ -511,6 +511,11 @@
     <footer class="site-footer">
         MMC Elections 2026 — Voter Search Portal &nbsp;|&nbsp;
         <a href="{{ route('admin.dashboard') }}">Admin</a>
+        <br style="margin-top:0.4rem">
+        <span style="opacity:0.6">Developed by</span>
+        <a href="https://mavericinfotech.in" target="_blank">Maveric Infotech</a>
+        &nbsp;|&nbsp;
+        <a href="tel:+919552302834">+91 95523 02834</a>
     </footer>
 </div>
 @livewireScripts

@@ -4,7 +4,6 @@
 @section('extra-styles')
 <style>
 body { background: #f0f4f8; }
-.site-footer { display: none; }
 
 /* ── Search card — floated glass card ──────────────────────────────── */
 .main-content { padding-top: 0; padding-bottom: 3rem; }
