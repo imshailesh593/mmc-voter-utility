@@ -17,14 +17,21 @@ html, body { height: 100%; }
     background: #f1f5f9;
 }
 
-/* ── Hero: full image, no fixed height ───────────────────────────────── */
+/* ── Hero ─────────────────────────────────────────────────────────────── */
 .hero-img-wrap {
     background: #ffffff;
     border-bottom: 2px solid #fecaca;
+    max-height: 52vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .hero-img-wrap img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
     display: block;
 }
 
