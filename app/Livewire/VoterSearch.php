@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\BranchVenue;
 use App\Models\Voter;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -35,6 +36,8 @@ class VoterSearch extends Component
             $voters = Voter::search($this->phone, $this->name, $this->registration)->paginate(15);
         }
 
-        return view('livewire.voter-search', ['voters' => $voters]);
+        $venues = BranchVenue::pluck('venue', 'branch')->toArray();
+
+        return view('livewire.voter-search', ['voters' => $voters, 'venues' => $venues]);
     }
 }

@@ -138,7 +138,7 @@
                             </td>
                             <td>
                                 <div class="vi-label">Voting Centre</div>
-                                <div class="vi-value">Dr. Vaishampayan Memorial GMC, APJ Abdul Kalam Hall, GF, Solapur 413304</div>
+                                <div class="vi-value">{{ $venue }}</div>
                             </td>
                         </tr>
                     </table>

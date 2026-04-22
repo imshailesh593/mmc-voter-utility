@@ -124,7 +124,7 @@
                         <span style="margin-left:auto;color:rgba(255,255,255,0.85);font-size:0.65rem;font-weight:700;">IMA Official Panel</span>
                     </div>
                     <div class="slip-p-footer">
-                        <span>Sunday, 26th April 2026 &nbsp;|&nbsp; 8AM – 5PM &nbsp;|&nbsp; Dr. Vaishampayan Memorial GMC, APJ Abdul Kalam Hall, GF, Solapur 413304</span>
+                        <span>Sunday, 26th April 2026 &nbsp;|&nbsp; 8AM – 5PM &nbsp;|&nbsp; {{ $venue }}</span>
                         <span class="slip-p-verified">✓ Verified</span>
                     </div>
                 </div>
