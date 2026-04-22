@@ -33,6 +33,9 @@ class VotersImport implements ToUpsertModel, WithHeadingRow, WithBatchInserts, W
             'phone'               => $phone ?: null,
             'registration_number' => trim($row['registration_number'] ?? $row['registration'] ?? $row['reg_no'] ?? '') ?: null,
             'serial_number'       => trim($row['serial_number'] ?? $row['serial'] ?? $row['sr_no'] ?? '') ?: null,
+            'electoral_number'    => trim($row['electoral_number'] ?? $row['electoral'] ?? $row['electoralnumber'] ?? $row['electoral_no'] ?? '') ?: null,
+            'degree'              => trim($row['degree'] ?? $row['qualification'] ?? '') ?: null,
+            'address'             => trim($row['address'] ?? $row['area'] ?? '') ?: null,
         ]);
     }
 

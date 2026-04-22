@@ -13,6 +13,9 @@ class Voter extends Model
         'phone',
         'registration_number',
         'serial_number',
+        'electoral_number',
+        'degree',
+        'address',
     ];
 
     public static function search(string $phone = '', string $name = '', string $registration = ''): Builder

@@ -9,7 +9,7 @@
 
         .slip { width: 100%; border: 3px solid #dc2626; border-radius: 6px; overflow: hidden; }
 
-        /* ── Clipped hero ── */
+        /* ── Hero ── */
         .hero-clip { height: 168pt; overflow: hidden; border-bottom: 2px solid #dc2626; }
         .hero-clip img { width: 100%; }
 
@@ -34,12 +34,21 @@
 
         .info-td { padding-left: 4pt; }
         .v-label { font-size: 6.5pt; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; color: #94a3b8; margin-bottom: 3pt; }
-        .v-name  { font-size: 17pt; font-weight: bold; color: #dc2626; line-height: 1.15; margin-bottom: 6pt; }
+        .v-name  { font-size: 17pt; font-weight: bold; color: #dc2626; line-height: 1.15; margin-bottom: 5pt; }
+        @if($voter->degree)
+        .v-degree { font-size: 8pt; color: #64748b; margin-bottom: 5pt; }
+        @endif
 
-        .details { width: 100%; border-collapse: collapse; }
-        .details td { padding: 0 14pt 0 0; vertical-align: top; }
+        .details { width: 100%; border-collapse: collapse; margin-bottom: 4pt; }
+        .details td { padding: 0 10pt 0 0; vertical-align: top; }
         .d-label { font-size: 6pt; font-weight: bold; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; margin-bottom: 1pt; }
-        .d-value { font-size: 9pt; font-weight: bold; color: #1e293b; }
+        .d-value { font-size: 8.5pt; font-weight: bold; color: #1e293b; }
+
+        /* ── Voting info row ── */
+        .voting-info { width: 100%; border-collapse: collapse; margin-top: 5pt; padding-top: 5pt; border-top: 1pt solid #f1f5f9; }
+        .voting-info td { padding: 0 10pt 0 0; vertical-align: top; }
+        .vi-label { font-size: 6pt; font-weight: bold; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; margin-bottom: 1pt; }
+        .vi-value { font-size: 7.5pt; font-weight: bold; color: #dc2626; }
 
         /* ── Numbers strip ── */
         .strip { background: #ef4444; padding: 7pt 13pt; }
@@ -59,9 +68,8 @@
         .footer { background: #1e293b; padding: 6pt 13pt; }
         .footer-table { width: 100%; border-collapse: collapse; }
         .footer-table td { vertical-align: middle; padding: 0; }
-        .f-date { font-size: 7.5pt; font-weight: bold; color: rgba(255,255,255,0.75); }
         .f-key { font-size: 6pt; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); display: block; margin-bottom: 1pt; }
-        .f-val { font-size: 8pt; font-weight: bold; color: rgba(255,255,255,0.85); display: block; }
+        .f-val { font-size: 7.5pt; font-weight: bold; color: rgba(255,255,255,0.85); display: block; }
         .f-stamp {
             font-size: 7pt; color: #86efac;
             border: 1.5pt solid #86efac; border-radius: 3pt;
@@ -74,7 +82,7 @@
 <body>
 <div class="slip">
 
-    {{-- Hero image clipped to top 168pt --}}
+    {{-- Hero --}}
     <div class="hero-clip">
         <img src="file://{{ public_path('images/candidate-badge.png') }}" alt="Dr. Sanjaykumar S. Deshmukh">
     </div>
@@ -93,23 +101,44 @@
                 <td class="info-td">
                     <div class="v-label">Voter Name</div>
                     <div class="v-name">{{ $voter->name }}</div>
+                    @if($voter->degree)
+                        <div class="v-degree">{{ $voter->degree }}</div>
+                    @endif
+
+                    {{-- Registration / Electoral / Branch --}}
                     <table class="details">
                         <tr>
-                            @if($voter->branch)
-                                <td>
-                                    <div class="d-label">Branch</div>
-                                    <div class="d-value">{{ $voter->branch }}</div>
-                                </td>
-                            @endif
                             @if($voter->registration_number)
                                 <td>
                                     <div class="d-label">Reg. No.</div>
                                     <div class="d-value">{{ $voter->registration_number }}</div>
                                 </td>
                             @endif
+                            @if($voter->electoral_number)
+                                <td>
+                                    <div class="d-label">Electoral No.</div>
+                                    <div class="d-value">{{ $voter->electoral_number }}</div>
+                                </td>
+                            @endif
+                            @if($voter->branch)
+                                <td>
+                                    <div class="d-label">Branch</div>
+                                    <div class="d-value">{{ $voter->branch }}</div>
+                                </td>
+                            @endif
+                        </tr>
+                    </table>
+
+                    {{-- Voting Date & Venue --}}
+                    <table class="voting-info">
+                        <tr>
+                            <td style="width:30%">
+                                <div class="vi-label">Voting Date</div>
+                                <div class="vi-value">Sunday, 26 April 2026 · 8AM–5PM</div>
+                            </td>
                             <td>
-                                <div class="d-label">Candidate</div>
-                                <div class="d-value">Dr. Sanjaykumar S. Deshmukh</div>
+                                <div class="vi-label">Voting Centre</div>
+                                <div class="vi-value">Dr. Vaishampayan Memorial GMC, APJ Abdul Kalam Hall, GF, Solapur 413304</div>
                             </td>
                         </tr>
                     </table>
@@ -134,14 +163,9 @@
     <div class="footer">
         <table class="footer-table">
             <tr>
-                <td class="f-date">
-                    <span class="f-key">Voting Date</span>
-                    <span class="f-val">Sunday, 26th April 2026 &nbsp;&nbsp;|&nbsp;&nbsp; 8AM – 5PM</span>
-                </td>
-                <td style="width:10pt"></td>
-                <td class="f-date">
-                    <span class="f-key">Venue</span>
-                    <span class="f-val">District Headquarter</span>
+                <td>
+                    <span class="f-key">Candidate</span>
+                    <span class="f-val">Dr. Sanjaykumar S. Deshmukh — SR. No. 13</span>
                 </td>
                 <td style="width:80pt; text-align:right">
                     <span class="f-stamp">✓ Verified</span>
