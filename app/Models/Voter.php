@@ -16,6 +16,13 @@ class Voter extends Model
         'electoral_number',
         'degree',
         'address',
+        'voted',
+        'in_favour',
+    ];
+
+    protected $casts = [
+        'voted'     => 'boolean',
+        'in_favour' => 'boolean',
     ];
 
     public static function search(string $phone = '', string $name = '', string $registration = ''): Builder

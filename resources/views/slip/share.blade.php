@@ -101,10 +101,12 @@
                         <img src="/images/candidate-badge.png" alt="Dr. Sanjaykumar S. Deshmukh — MMC Elections 2026" style="width:100%;display:block;">
                     </div>
                     <div class="slip-p-body">
+                        @if($voter->electoral_number)
                         <div style="display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0">
-                            <div style="font-size:0.55rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-400)">VOTE FOR</div>
-                            <div class="slip-p-num">13</div>
+                            <div style="font-size:0.55rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-400)">Electoral No.</div>
+                            <div class="slip-p-num" style="font-size:{{ strlen($voter->electoral_number) > 6 ? '0.85rem' : '1.9rem' }}">{{ $voter->electoral_number }}</div>
                         </div>
+                        @endif
                         <div class="slip-p-info">
                             <div class="slip-p-srlabel">Voter Name</div>
                             <div class="slip-p-name">{{ $voter->name }}</div>
@@ -122,7 +124,7 @@
                         <span style="margin-left:auto;color:rgba(255,255,255,0.85);font-size:0.65rem;font-weight:700;">IMA Official Panel</span>
                     </div>
                     <div class="slip-p-footer">
-                        <span>Sunday, 26th April 2026 &nbsp;|&nbsp; 8AM – 5PM &nbsp;|&nbsp; District Headquarter</span>
+                        <span>Sunday, 26th April 2026 &nbsp;|&nbsp; 8AM – 5PM &nbsp;|&nbsp; Dr. Vaishampayan Memorial GMC, APJ Abdul Kalam Hall, GF, Solapur 413304</span>
                         <span class="slip-p-verified">✓ Verified</span>
                     </div>
                 </div>

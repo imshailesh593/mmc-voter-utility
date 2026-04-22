@@ -33,4 +33,9 @@ class VoterController extends Controller
     {
         return view('admin.users');
     }
+
+    public function adminMarking()
+    {
+        return view('admin.marking');
+    }
 }

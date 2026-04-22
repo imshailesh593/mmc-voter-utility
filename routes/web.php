@@ -21,6 +21,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/branches',  [VoterController::class, 'adminBranches'])->name('branches');
     Route::get('/import',    [VoterController::class, 'adminImport'])->name('import');
     Route::get('/users',     [VoterController::class, 'adminUsers'])->name('users');
+    Route::get('/marking',   [VoterController::class, 'adminMarking'])->name('marking');
 });
 
 Route::prefix('slip')->name('slip.')->group(function () {
