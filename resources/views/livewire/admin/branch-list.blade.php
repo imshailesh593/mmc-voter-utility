@@ -6,15 +6,54 @@
         </div>
     @endif
 
+    @if($errorMessage)
+        <div class="alert alert-error" style="margin-bottom:1rem">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            {{ $errorMessage }}
+        </div>
+    @endif
+
+    {{-- Venue bulk upload --}}
+    @if($showVenueUpload)
+        <div class="card" style="margin-bottom:1rem;border:2px dashed var(--red-200)">
+            <div class="card-header" style="background:var(--red-50)">
+                <span class="card-title" style="color:var(--red-700)">Bulk Upload Voting Centres</span>
+                <button wire:click="$set('showVenueUpload',false)" class="btn btn-ghost btn-sm">Cancel</button>
+            </div>
+            <div style="padding:1.25rem">
+                <div style="font-size:0.78rem;color:var(--gray-500);margin-bottom:1rem;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:8px;padding:0.65rem 0.9rem">
+                    Expected columns: <strong>Sr. No.</strong> &nbsp;·&nbsp; <strong>Branch</strong> &nbsp;·&nbsp; <strong>Location of Polling Station</strong>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap">
+                    <label style="flex:1;min-width:200px">
+                        <input type="file" wire:model="venueFile" accept=".xlsx,.xls,.csv"
+                            style="width:100%;padding:0.5rem;border:2px solid var(--gray-200);border-radius:8px;font-size:0.83rem;font-family:inherit;cursor:pointer">
+                    </label>
+                    <button wire:click="importVenues" class="btn btn-primary" wire:loading.attr="disabled">
+                        <span wire:loading.remove wire:target="importVenues">Import Venues</span>
+                        <span wire:loading wire:target="importVenues">Importing…</span>
+                    </button>
+                </div>
+                @error('venueFile') <div style="font-size:0.75rem;color:var(--red-600);margin-top:0.4rem">{{ $message }}</div> @enderror
+            </div>
+        </div>
+    @endif
+
     <div class="card">
         <div class="card-header">
             <span class="card-title">{{ $branches->count() }} Branches &nbsp;·&nbsp; {{ number_format($grandTotal) }} Total Voters</span>
-            <input
-                type="text"
-                wire:model.live.debounce.250ms="search"
-                class="toolbar-input"
-                placeholder="Filter branches…"
-            >
+            <div style="display:flex;align-items:center;gap:0.5rem">
+                <button wire:click="$set('showVenueUpload',true)" class="btn btn-ghost btn-sm" title="Bulk upload venues" style="white-space:nowrap">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width:13px;height:13px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+                    Upload Venues
+                </button>
+                <input
+                    type="text"
+                    wire:model.live.debounce.250ms="search"
+                    class="toolbar-input"
+                    placeholder="Filter branches…"
+                >
+            </div>
         </div>
 
         <div wire:loading class="loading-bar"><div class="loading-bar-fill"></div></div>

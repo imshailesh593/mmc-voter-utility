@@ -2,19 +2,28 @@
 
 namespace App\Livewire\Admin;
 
+use App\Imports\BranchVenuesImport;
 use App\Models\BranchVenue;
 use App\Models\Voter;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BranchList extends Component
 {
+    use WithFileUploads;
+
     public string $search = '';
     public ?string $confirmDeleteBranch = null;
     public ?string $successMessage = null;
+    public ?string $errorMessage = null;
 
     public ?string $editingVenueBranch = null;
     public string $editingVenueValue = '';
+
+    public $venueFile = null;
+    public bool $showVenueUpload = false;
 
     public function confirmDelete(string $branch): void
     {
@@ -67,6 +76,23 @@ class BranchList extends Component
         $this->successMessage = "Venue updated for {$this->editingVenueBranch}.";
         $this->editingVenueBranch = null;
         $this->editingVenueValue = '';
+    }
+
+    public function importVenues(): void
+    {
+        $this->validate(['venueFile' => 'required|file|mimes:xlsx,xls,csv|max:10240']);
+
+        try {
+            $import = new BranchVenuesImport();
+            Excel::import($import, $this->venueFile->getRealPath());
+            $count = $import->getImportedCount();
+            $this->successMessage = "{$count} venue" . ($count !== 1 ? 's' : '') . " imported successfully.";
+        } catch (\Throwable $e) {
+            $this->errorMessage = 'Import failed: ' . $e->getMessage();
+        }
+
+        $this->venueFile = null;
+        $this->showVenueUpload = false;
     }
 
     public function render()
