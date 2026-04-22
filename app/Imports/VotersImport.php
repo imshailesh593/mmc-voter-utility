@@ -3,13 +3,14 @@
 namespace App\Imports;
 
 use App\Models\Voter;
-use Maatwebsite\Excel\Concerns\ToUpsertModel;
+use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithUpserts;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
 
-class VotersImport implements ToUpsertModel, WithHeadingRow, WithBatchInserts, WithChunkReading, SkipsEmptyRows
+class VotersImport implements ToModel, WithUpserts, WithHeadingRow, WithBatchInserts, WithChunkReading, SkipsEmptyRows
 {
     private int $importedCount = 0;
 
