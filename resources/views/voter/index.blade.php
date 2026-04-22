@@ -6,26 +6,11 @@
 body { background: #f0f4f8; }
 .site-footer { display: none; }
 
-/* ── Hero ──────────────────────────────────────────────────────────── */
-.hero-banner {
-    position: relative;
-    background: #fff;
-    border-bottom: none;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-}
-.hero-banner::after {
-    content: '';
-    display: block;
-    height: 48px;
-    background: linear-gradient(to bottom, rgba(240,244,248,0) 0%, #f0f4f8 100%);
-    margin-top: -2px;
-}
-
 /* ── Search card — floated glass card ──────────────────────────────── */
 .main-content { padding-top: 0; padding-bottom: 3rem; }
 .search-card {
     max-width: 680px;
-    margin: -32px auto 0 !important;
+    margin: 1.5rem auto 0 !important;
     position: relative;
     z-index: 20;
     background: rgba(255,255,255,0.97) !important;
@@ -125,7 +110,7 @@ body { background: #f0f4f8; }
 }
 
 @media (max-width: 700px) {
-    .search-card { margin: -20px 1rem 0 !important; }
+    .search-card { margin: 1rem 1rem 0 !important; }
 }
 </style>
 @endsection
@@ -133,56 +118,12 @@ body { background: #f0f4f8; }
 @section('content')
 
 {{-- ═══ HERO ═══════════════════════════════════════════════════════════════ --}}
-<div class="hero-banner">
-
-    <div class="hero-top">
-        <div class="hero-title-block">
-            <div class="hero-title-main">Maharashtra Medical Council<br>Elections 2026</div>
-        </div>
-    </div>
-
-    <div class="hero-candidate">
-        <div class="candidate-photo-wrap">
-            <div class="candidate-photo-circle">
-                <img src="{{ asset('images/candidate.png') }}" alt="Dr. Sanjaykumar S. Deshmukh">
-            </div>
-            <div class="serial-badge">
-                <span class="serial-badge-label">SR.NO.</span>
-                <span class="serial-badge-num">13</span>
-            </div>
-        </div>
-        <div class="candidate-info">
-            <div class="candidate-panel-label">Official MMC Panel Backed By IMA Maharashtra</div>
-            <div class="candidate-name">Dr. Sanjaykumar S. Deshmukh</div>
-            <div class="candidate-divider"></div>
-            <div class="candidate-designation">Radiologist, Pandharpur</div>
-        </div>
-    </div>
-
-    <div class="numbers-strip">
-        @foreach([1, 13, 24, 27, 29, 40, 43, 48, 56] as $n)
-            <div class="number-box">{{ $n }}</div>
-        @endforeach
-        <div class="numbers-tagline">Vote for IMA Official Panel in MMC'26!</div>
-    </div>
-
-    <div class="election-bar">
-        <div class="election-bar-item">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-            </svg>
-            Sunday, 26th April 2026 &nbsp;·&nbsp; 8AM to 5PM
-        </div>
-        <div class="election-bar-dot"></div>
-        <div class="election-bar-item">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-            </svg>
-            District Headquarter
-        </div>
-    </div>
-
+<div style="background:#fff; box-shadow:0 4px 24px rgba(0,0,0,0.08);">
+    <img
+        src="{{ asset('images/candidate-badge.png') }}"
+        alt="Maharashtra Medical Council Elections 2026 — Dr. Sanjaykumar S. Deshmukh SR.No.13"
+        style="width:100%; max-height:52vh; object-fit:contain; object-position:center; display:block;"
+    >
 </div>
 
 {{-- ═══ SEARCH ══════════════════════════════════════════════════════════════ --}}
