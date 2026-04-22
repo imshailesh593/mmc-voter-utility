@@ -18,7 +18,7 @@ class SlipController extends Controller
         $venue = BranchVenue::forBranch($voter->branch) ?? self::DEFAULT_VENUE;
 
         $pdf = Pdf::loadView('slip.voter-slip', ['voter' => $voter, 'venue' => $venue])
-            ->setPaper([0, 0, 595, 340], 'portrait');
+            ->setPaper([0, 0, 595, 520], 'portrait');
 
         $filename = 'voting-slip-' . str($voter->name)->slug() . '.pdf';
 

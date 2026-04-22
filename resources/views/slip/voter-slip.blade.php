@@ -10,8 +10,8 @@
         .slip { width: 100%; border: 3px solid #dc2626; border-radius: 6px; overflow: hidden; }
 
         /* ── Hero ── */
-        .hero-clip { height: 168pt; overflow: hidden; border-bottom: 2px solid #dc2626; }
-        .hero-clip img { width: 100%; }
+        .hero-clip { border-bottom: 2px solid #dc2626; line-height: 0; }
+        .hero-clip img { width: 100%; height: auto; display: block; }
 
         /* ── Voter body ── */
         .body { padding: 9pt 13pt 8pt; background: #fff; border-bottom: 1px solid #f1f5f9; }
