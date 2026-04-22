@@ -41,7 +41,7 @@ class VotersImport implements ToUpsertModel, WithHeadingRow, WithBatchInserts, W
 
     public function uniqueBy(): string|array
     {
-        return ['name', 'phone'];
+        return ['registration_number'];
     }
 
     public function batchSize(): int
