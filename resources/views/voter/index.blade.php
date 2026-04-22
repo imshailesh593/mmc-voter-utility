@@ -21,17 +21,12 @@ html, body { height: 100%; }
 .hero-img-wrap {
     background: #ffffff;
     border-bottom: 2px solid #fecaca;
-    max-height: 52vh;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 .hero-img-wrap img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
+    max-height: 50vh;
+    object-fit: contain;
+    object-position: center;
     display: block;
 }
 
