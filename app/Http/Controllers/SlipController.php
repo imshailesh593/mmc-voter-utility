@@ -10,7 +10,7 @@ use Illuminate\Http\Response;
 
 class SlipController extends Controller
 {
-    private const DEFAULT_VENUE = 'Dr. Vaishampayan Memorial GMC, APJ Abdul Kalam Hall, GF, Solapur 413304';
+    private const DEFAULT_VENUE = 'District Headquarter';
 
     public function download(int $id): Response
     {
