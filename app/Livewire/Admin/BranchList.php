@@ -59,7 +59,7 @@ class BranchList extends Component
             BranchVenue::where('branch', $this->editingVenueBranch)->delete();
         } else {
             BranchVenue::updateOrCreate(
-                ['branch' => $this->editingVenueBranch],
+                ['branch' => trim($this->editingVenueBranch)],
                 ['venue'  => $venue]
             );
         }

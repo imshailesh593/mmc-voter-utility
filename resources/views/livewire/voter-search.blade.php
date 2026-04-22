@@ -103,7 +103,7 @@
                                         📅 26 Apr 2026 · 8AM–5PM
                                     </span>
                                     <span style="font-size:0.68rem;font-weight:600;color:#475569;background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:0.15rem 0.5rem">
-                                        🏥 {{ $venues[$voter->branch] ?? 'District Headquarter' }}
+                                        🏥 {{ $venues[strtolower(trim($voter->branch))] ?? 'District Headquarter' }}
                                     </span>
                                 </div>
                             </div>

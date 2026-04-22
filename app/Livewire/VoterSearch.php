@@ -36,7 +36,7 @@ class VoterSearch extends Component
             $voters = Voter::search($this->phone, $this->name, $this->registration)->paginate(15);
         }
 
-        $venues = BranchVenue::pluck('venue', 'branch')->toArray();
+        $venues = BranchVenue::allKeyed();
 
         return view('livewire.voter-search', ['voters' => $voters, 'venues' => $venues]);
     }

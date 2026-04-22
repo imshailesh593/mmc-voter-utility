@@ -11,6 +11,11 @@ class BranchVenue extends Model
     public static function forBranch(?string $branch): ?string
     {
         if (!$branch) return null;
-        return static::where('branch', $branch)->value('venue');
+        return static::whereRaw('LOWER(TRIM(branch)) = ?', [strtolower(trim($branch))])->value('venue');
+    }
+
+    public static function allKeyed(): array
+    {
+        return static::all()->keyBy(fn($v) => strtolower(trim($v->branch)))->map->venue->toArray();
     }
 }
