@@ -22,11 +22,10 @@
         .num-label { font-size: 6.5pt; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; color: #94a3b8; margin-bottom: 3pt; }
         .num-box {
             background: #dc2626; color: #fff;
-            font-size: 26pt; font-weight: bold;
-            width: 52pt; height: 52pt; line-height: 40pt;
+            font-weight: bold;
+            width: 52pt; height: 52pt;
             border-radius: 8pt; border: 2pt solid #991b1b;
-            text-align: center; display: block; margin: 0 auto;
-            padding-bottom: 12pt;
+            text-align: center; display: table-cell; vertical-align: middle; margin: 0 auto;
         }
 
         .sep-td { width: 1pt; padding: 0 10pt; }
@@ -92,8 +91,14 @@
         <table class="body-table">
             <tr>
                 <td class="num-td">
-                    <div class="num-label">Vote For</div>
-                    <div class="num-box">13</div>
+                    <div class="num-label">Electoral No.</div>
+                    @php
+                        $elen = strlen($voter->electoral_number ?? '');
+                        $efont = $elen <= 3 ? '22pt' : ($elen <= 5 ? '16pt' : ($elen <= 7 ? '12pt' : '9pt'));
+                    @endphp
+                    <div class="num-box" style="font-size:{{ $efont }};width:52pt;height:52pt;display:table;margin:0 auto;">
+                        <span style="display:table-cell;vertical-align:middle;text-align:center;">{{ $voter->electoral_number ?? '—' }}</span>
+                    </div>
                 </td>
                 <td class="sep-td">
                     <span class="sep-line"></span>

@@ -102,9 +102,13 @@
                     </div>
                     <div class="slip-p-body">
                         @if($voter->electoral_number)
+                        @php
+                            $elen = strlen($voter->electoral_number);
+                            $efont = $elen <= 3 ? '1.9rem' : ($elen <= 5 ? '1.35rem' : ($elen <= 7 ? '1rem' : '0.75rem'));
+                        @endphp
                         <div style="display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0">
                             <div style="font-size:0.55rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-400)">Electoral No.</div>
-                            <div class="slip-p-num" style="font-size:{{ strlen($voter->electoral_number) > 6 ? '0.85rem' : '1.9rem' }}">{{ $voter->electoral_number }}</div>
+                            <div class="slip-p-num" style="font-size:{{ $efont }};line-height:1;display:flex;align-items:center;justify-content:center;">{{ $voter->electoral_number }}</div>
                         </div>
                         @endif
                         <div class="slip-p-info">
