@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('voters', function (Blueprint $table) {
-            $table->boolean('voted')->default(false)->after('address');
-            $table->boolean('in_favour')->nullable()->after('voted');
+            $table->boolean('voted')->default(false);
+            $table->boolean('in_favour')->nullable();
         });
     }
 
