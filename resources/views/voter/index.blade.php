@@ -3,7 +3,14 @@
 
 @section('extra-styles')
 <style>
-body { background: #f0f4f8; }
+body {
+    background-color: #f0f4f8;
+    background-image:
+        radial-gradient(ellipse at 20% 50%, rgba(220,38,38,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(185,28,28,0.05) 0%, transparent 55%),
+        radial-gradient(ellipse at 60% 90%, rgba(239,68,68,0.06) 0%, transparent 50%);
+    background-attachment: fixed;
+}
 
 /* ── Search card — floated glass card ──────────────────────────────── */
 .main-content { padding-top: 0; padding-bottom: 3rem; }
