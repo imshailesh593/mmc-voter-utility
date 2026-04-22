@@ -84,7 +84,7 @@ html, body { height: 100%; overflow: hidden; }
     {{-- ═══ COMPLETE HERO BANNER (full image, no cropping) ════════════════════ --}}
     <div class="hero-img-wrap">
         <img
-            src="/images/candidate-badge.png"
+            src="{{ asset('images/candidate-badge.png') }}"
             alt="Maharashtra Medical Council Elections 2026 — Dr. Sanjaykumar S. Deshmukh SR.No.13"
         >
     </div>
