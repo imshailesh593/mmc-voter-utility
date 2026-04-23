@@ -47,6 +47,13 @@ return [
             'report' => false,
         ],
 
+        'public_images' => [
+            'driver'     => 'local',
+            'root'       => public_path('images'),
+            'visibility' => 'public',
+            'throw'      => false,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
