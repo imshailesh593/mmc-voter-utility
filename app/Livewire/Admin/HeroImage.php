@@ -22,12 +22,29 @@ class HeroImage extends Component
         try {
             $destination = public_path('images/candidate-badge.png');
 
-            // Back up the existing image
             if (file_exists($destination)) {
                 copy($destination, public_path('images/candidate-badge.backup.png'));
             }
 
-            $this->image->storeAs('', 'candidate-badge.png', ['disk' => 'public_images']);
+            $ext = strtolower($this->image->getClientOriginalExtension());
+
+            if ($ext === 'png') {
+                $this->image->move(public_path('images'), 'candidate-badge.png');
+            } else {
+                // Convert to PNG via GD
+                $tmpPath = $this->image->getRealPath();
+                $img = match($ext) {
+                    'jpg', 'jpeg' => imagecreatefromjpeg($tmpPath),
+                    'webp'        => imagecreatefromwebp($tmpPath),
+                    default       => null,
+                };
+                if ($img) {
+                    imagepng($img, $destination);
+                    imagedestroy($img);
+                } else {
+                    $this->image->move(public_path('images'), 'candidate-badge.png');
+                }
+            }
 
             $this->successMessage = 'Hero image updated successfully.';
             $this->errorMessage = null;
