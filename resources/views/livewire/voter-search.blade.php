@@ -83,11 +83,6 @@
                                         </span>
                                     @endif
                                 </div>
-                                @if($voter->address)
-                                    <div style="font-size:0.7rem;color:#94a3b8;margin-top:0.3rem;line-height:1.4">
-                                        {{ Str::limit($voter->address, 80) }}
-                                    </div>
-                                @endif
 
                                 {{-- Voting info --}}
                                 <div style="margin-top:0.55rem;padding-top:0.5rem;border-top:1px solid #f1f5f9;display:flex;flex-wrap:wrap;gap:0.4rem">
