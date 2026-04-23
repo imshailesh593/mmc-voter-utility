@@ -228,6 +228,7 @@
         .upload-zone-text { font-size: 0.86rem; font-weight: 600; color: var(--gray-600); }
         .upload-zone-sub { font-size: 0.74rem; color: var(--gray-400); }
         .upload-zone-file { font-size: 0.84rem; font-weight: 700; color: var(--red-700); }
+        .hidden-input { display: none; }
 
         /* ── Loading ───────────────────────────────────────── */
         .loading-bar { height: 3px; background: var(--gray-100); overflow: hidden; border-radius: 2px; }
