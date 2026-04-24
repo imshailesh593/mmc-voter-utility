@@ -22,6 +22,10 @@ class BranchList extends Component
     public ?string $editingVenueBranch = null;
     public string $editingVenueValue = '';
 
+    public bool $showAddVenue = false;
+    public string $newVenueBranch = '';
+    public string $newVenueValue = '';
+
     public $venueFile = null;
     public bool $showVenueUpload = false;
 
@@ -44,6 +48,27 @@ class BranchList extends Component
             $this->successMessage = "{$count} voters from {$this->confirmDeleteBranch} deleted.";
         }
         $this->confirmDeleteBranch = null;
+    }
+
+    public function addVenue(): void
+    {
+        $this->validate([
+            'newVenueBranch' => 'required|string|max:255',
+            'newVenueValue'  => 'required|string|max:500',
+        ]);
+
+        $branch = trim($this->newVenueBranch);
+        $venue  = trim($this->newVenueValue);
+
+        BranchVenue::updateOrCreate(
+            ['branch' => $branch],
+            ['venue'  => $venue]
+        );
+
+        $this->successMessage = "Venue added for {$branch}.";
+        $this->showAddVenue = false;
+        $this->newVenueBranch = '';
+        $this->newVenueValue = '';
     }
 
     public function openVenueEdit(string $branch): void

@@ -46,6 +46,10 @@
                 <span style="font-size:0.7rem;color:var(--gray-400)">{{ count($venues) }} venues configured</span>
             </div>
             <div style="display:flex;align-items:center;gap:0.5rem">
+                <button wire:click="$set('showAddVenue',true)" class="btn btn-ghost btn-sm" style="white-space:nowrap">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width:13px;height:13px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                    Add Venue
+                </button>
                 <button wire:click="$set('showVenueUpload',true)" class="btn btn-ghost btn-sm" style="white-space:nowrap">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width:13px;height:13px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
                     Upload Venues
@@ -111,6 +115,39 @@
             @endif
         </div>
     </div>
+
+    {{-- Add venue modal --}}
+    @if($showAddVenue)
+        <div class="confirm-overlay">
+            <div class="confirm-box" style="max-width:520px">
+                <h3 style="margin-bottom:1rem">Add Venue / Voting Centre</h3>
+
+                <div style="margin-bottom:0.75rem">
+                    <label style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--gray-400);display:block;margin-bottom:0.35rem">Branch Name</label>
+                    <input wire:model="newVenueBranch" type="text" placeholder="e.g. Solapur"
+                        style="width:100%;padding:0.6rem 0.85rem;border:2px solid var(--gray-200);border-radius:8px;font-size:0.85rem;font-family:inherit;outline:none;transition:border-color 0.2s;box-sizing:border-box"
+                        onfocus="this.style.borderColor='var(--red-400)'"
+                        onblur="this.style.borderColor='var(--gray-200)'">
+                    @error('newVenueBranch') <div style="font-size:0.73rem;color:var(--red-600);margin-top:0.3rem">{{ $message }}</div> @enderror
+                </div>
+
+                <div style="margin-bottom:1rem">
+                    <label style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--gray-400);display:block;margin-bottom:0.35rem">Venue / Voting Centre</label>
+                    <textarea wire:model="newVenueValue" rows="3"
+                        placeholder="Enter full polling station address…"
+                        style="width:100%;padding:0.65rem 0.85rem;border:2px solid var(--gray-200);border-radius:8px;font-size:0.85rem;font-family:inherit;resize:vertical;outline:none;transition:border-color 0.2s;box-sizing:border-box"
+                        onfocus="this.style.borderColor='var(--red-400)'"
+                        onblur="this.style.borderColor='var(--gray-200)'"></textarea>
+                    @error('newVenueValue') <div style="font-size:0.73rem;color:var(--red-600);margin-top:0.3rem">{{ $message }}</div> @enderror
+                </div>
+
+                <div class="confirm-actions">
+                    <button wire:click="$set('showAddVenue',false)" class="btn btn-ghost">Cancel</button>
+                    <button wire:click="addVenue" class="btn btn-primary">Save Venue</button>
+                </div>
+            </div>
+        </div>
+    @endif
 
     {{-- Venue edit modal --}}
     @if($editingVenueBranch)
