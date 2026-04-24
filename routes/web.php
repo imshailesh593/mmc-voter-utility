@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\HeroImageController;
+use App\Http\Controllers\ImportController;
 use App\Http\Controllers\VoterController;
 use App\Http\Controllers\SlipController;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/voters',    [VoterController::class, 'adminVoters'])->name('voters');
     Route::get('/branches',  [VoterController::class, 'adminBranches'])->name('branches');
     Route::get('/import',    [VoterController::class, 'adminImport'])->name('import');
+    Route::post('/import',   [ImportController::class, 'upload'])->name('import.upload');
     Route::get('/users',     [VoterController::class, 'adminUsers'])->name('users');
     Route::get('/marking',   [VoterController::class, 'adminMarking'])->name('marking');
 });
